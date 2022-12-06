@@ -11,7 +11,8 @@ import UIKit
 struct LetvPosterData {
     static func getTodayPoster(completion: @escaping (Result<[Poster], Error>) -> Void) {
         
-        let appVersion = Bundle.main.infoDictionary?["CFBundleShortVersionString"] ?? "10.2.3"
+//        let appVersion = Bundle.main.infoDictionary?["CFBundleShortVersionString"] ?? "10.2.3"
+        let appVersion = "10.5.0"
         
         let url = URL(string: "http://api.mob.app.letv.com/wegit/card?num=4&pcode=010110000&version=\(appVersion)&lang=chs&region=CN")!
        
