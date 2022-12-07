@@ -71,9 +71,16 @@ struct SimpleEntry: TimelineEntry {
 
 struct LetvPosterEntryView : View {
     var entry: Provider.Entry
+    
+    @Environment(\.widgetFamily) var family
 
     var body: some View {
-        Text(entry.date, style: .time)
+        switch family {
+        case .systemSmall:
+            return SmallWidgetView(image: entry.posters.first?.pic43 ?? UIImage(named: "snapback")!, title: entry.posters.first?.title ?? "")
+        default:
+            return SmallWidgetView(image: entry.posters.first?.pic43 ?? UIImage(named: "snapback")!, title: "okok")
+        }
     }
 }
 
@@ -86,6 +93,7 @@ struct LetvPoster: Widget {
         }
         .configurationDisplayName("My Widget")
         .description("This is an example widget.")
+        .supportedFamilies([.systemSmall, .systemMedium])
     }
 }
 
