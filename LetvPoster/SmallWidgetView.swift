@@ -23,7 +23,8 @@ struct SmallWidgetView: View {
             ZStack(alignment: Alignment.bottom) {
                 Image(uiImage: image)
                     .resizable()
-                .cornerRadius(4)
+                    .cornerRadius(4)
+                    .scaledToFit()
                 Image("bigmask")
                     .resizable()
                     .frame(height: 30)
@@ -32,7 +33,6 @@ struct SmallWidgetView: View {
                     .font(.system(size: 12))
                     .padding(EdgeInsets(top: 0, leading: 10, bottom: 6, trailing: 10))
             }
-            .aspectRatio(4.0 / 3.0, contentMode: .fit)
         }
         .padding(12)
         .background(Color.white)
