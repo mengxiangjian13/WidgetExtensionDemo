@@ -16,7 +16,7 @@ struct Poster {
     var pic43: UIImage? = UIImage(named: "snapback")
     
     static func placeholderPoster() -> Poster {
-        Poster(title: "", vid: "", at: "1",
+        Poster(title: "ok", vid: "", at: "1",
                pic34: UIImage(named: "snapback"),
                pic43: UIImage(named: "snapback"))
     }

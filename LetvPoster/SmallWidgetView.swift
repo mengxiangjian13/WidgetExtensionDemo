@@ -29,6 +29,7 @@ struct SmallWidgetView: View {
                     .resizable()
                     .frame(height: 30)
                 Text(title)
+                    .lineLimit(1)
                     .foregroundColor(.white)
                     .font(.system(size: 12))
                     .padding(EdgeInsets(top: 0, leading: 10, bottom: 6, trailing: 10))
@@ -41,9 +42,17 @@ struct SmallWidgetView: View {
 
 struct SmallWidgetView_Previews: PreviewProvider {
     static var previews: some View {
-        SmallWidgetView(
-            image: UIImage(named: "snapback")!,
-            title: "okok")
-        .previewContext(WidgetPreviewContext(family: .systemSmall))
+        Group {
+            SmallWidgetView(
+                image: UIImage(named: "test")!,
+                title: "okok")
+            .previewContext(WidgetPreviewContext(family: .systemSmall))
+            
+            SmallWidgetView(
+                image: UIImage(named: "snapback")!,
+                title: "okok")
+            .previewContext(WidgetPreviewContext(family: .systemSmall))
+        }
+        
     }
 }
