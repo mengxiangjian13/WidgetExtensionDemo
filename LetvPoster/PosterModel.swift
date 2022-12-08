@@ -8,7 +8,7 @@
 import Foundation
 import UIKit
 
-struct Poster {
+struct Poster: Hashable {
     let title: String
     let vid: String
     let at: String

@@ -74,12 +74,15 @@ struct LetvPosterEntryView : View {
     
     @Environment(\.widgetFamily) var family
 
+    @ViewBuilder
     var body: some View {
         switch family {
         case .systemSmall:
-            return SmallWidgetView(image: entry.posters.first?.pic43 ?? UIImage(named: "snapback")!, title: entry.posters.first?.title ?? "")
+             SmallWidgetView(image: entry.posters.first?.pic43 ?? UIImage(named: "snapback")!, title: entry.posters.first?.title ?? "")
+        case .systemMedium:
+            MediumWidgetView(posters: entry.posters)
         default:
-            return SmallWidgetView(image: entry.posters.first?.pic43 ?? UIImage(named: "snapback")!, title: "okok")
+             SmallWidgetView(image: entry.posters.first?.pic43 ?? UIImage(named: "snapback")!, title: "okok")
         }
     }
 }

@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		650673F9294086F90027676E /* SmallWidgetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 650673F7294086510027676E /* SmallWidgetView.swift */; };
+		65628CC32941D96700228456 /* MediumWidgetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65628CC12941D90B00228456 /* MediumWidgetView.swift */; };
 		65D8FEEB293DE668002DE36E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65D8FEEA293DE668002DE36E /* AppDelegate.swift */; };
 		65D8FEED293DE668002DE36E /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65D8FEEC293DE668002DE36E /* SceneDelegate.swift */; };
 		65D8FEEF293DE668002DE36E /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65D8FEEE293DE668002DE36E /* ViewController.swift */; };
@@ -50,6 +51,7 @@
 
 /* Begin PBXFileReference section */
 		650673F7294086510027676E /* SmallWidgetView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SmallWidgetView.swift; sourceTree = "<group>"; };
+		65628CC12941D90B00228456 /* MediumWidgetView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MediumWidgetView.swift; sourceTree = "<group>"; };
 		65D8FEE7293DE668002DE36E /* WidgetExtensionDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WidgetExtensionDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		65D8FEEA293DE668002DE36E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		65D8FEEC293DE668002DE36E /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -139,6 +141,7 @@
 				65D8FF17293DF2DF002DE36E /* LetvPosterData.swift */,
 				65D8FF19293DF35B002DE36E /* PosterModel.swift */,
 				650673F7294086510027676E /* SmallWidgetView.swift */,
+				65628CC12941D90B00228456 /* MediumWidgetView.swift */,
 				65D8FF0D293DE695002DE36E /* Assets.xcassets */,
 				65D8FF0F293DE695002DE36E /* Info.plist */,
 			);
@@ -260,6 +263,7 @@
 				65D8FF0A293DE693002DE36E /* LetvPosterBundle.swift in Sources */,
 				65D8FF1B293DF46C002DE36E /* LetvPosterData.swift in Sources */,
 				65D8FF1C293DF46E002DE36E /* PosterModel.swift in Sources */,
+				65628CC32941D96700228456 /* MediumWidgetView.swift in Sources */,
 				650673F9294086F90027676E /* SmallWidgetView.swift in Sources */,
 				65D8FF0C293DE693002DE36E /* LetvPoster.swift in Sources */,
 			);
