@@ -18,18 +18,15 @@ struct MediumWidgetView: View {
                 Image("wlogo")
                     .padding(EdgeInsets(top: 0, leading: 0, bottom: 0, trailing: 11))
                 
-                Button {
-                    print("okokok")
-                } label: {
-                    HStack {
-                        Spacer()
-                        Image("sousuo1")
-                        Text("搜索")
-                            .font(.system(size: 13, weight: .regular))
-                            .foregroundColor(Color(white: 0, opacity: 0.33))
-                        Spacer()
-                    }
+                HStack {
+                    Spacer()
+                    Image("sousuo1")
+                    Text("搜索")
+                        .font(.system(size: 13, weight: .regular))
+                        .foregroundColor(Color(white: 0, opacity: 0.33))
+                    Spacer()
                 }
+                .widgetURL(URL(string: "Search"))
                 .frame(height: 24)
                 .background(Color(red: 242.0 / 255.0, green: 242.0 / 255.0, blue: 242.0 / 255.0))
                 .cornerRadius(12)
@@ -37,19 +34,21 @@ struct MediumWidgetView: View {
             Spacer()
             HStack(spacing: 6) {
                 ForEach(posters, id: \.self) { poster in
-                    ZStack(alignment: .bottom) {
-                        Image(uiImage: poster.pic34 ?? UIImage(named: "snapback")!)
-                            .resizable()
-                            .aspectRatio(0.75,contentMode: .fit)
-                            .cornerRadius(4)
-                        Image("bigmask")
-                            .resizable()
-                            .frame(height: 30)
-                        Text(poster.title)
-                            .foregroundColor(.white)
-                            .font(.system(size: 12))
-                            .lineLimit(1)
-                            .padding(5)
+                    Link(destination: URL(string: "episode,\(poster.vid),\(posters.firstIndex(of: poster)! + 1)")!) {
+                        ZStack(alignment: .bottom) {
+                            Image(uiImage: poster.pic34 ?? UIImage(named: "snapback")!)
+                                .resizable()
+                                .aspectRatio(0.75,contentMode: .fit)
+                                .cornerRadius(4)
+                            Image("bigmask")
+                                .resizable()
+                                .frame(height: 30)
+                            Text(poster.title)
+                                .foregroundColor(.white)
+                                .font(.system(size: 12))
+                                .lineLimit(1)
+                                .padding(5)
+                        }
                     }
                 }
             }

@@ -78,11 +78,11 @@ struct LetvPosterEntryView : View {
     var body: some View {
         switch family {
         case .systemSmall:
-             SmallWidgetView(image: entry.posters.first?.pic43 ?? UIImage(named: "snapback")!, title: entry.posters.first?.title ?? "")
+            SmallWidgetView(image: entry.posters.first?.pic43 ?? UIImage(named: "snapback")!, title: entry.posters.first?.title ?? "", url: entry.posters.first?.vid ?? "")
         case .systemMedium:
             MediumWidgetView(posters: entry.posters)
         default:
-             SmallWidgetView(image: entry.posters.first?.pic43 ?? UIImage(named: "snapback")!, title: "okok")
+             SmallWidgetView(image: entry.posters.first?.pic43 ?? UIImage(named: "snapback")!, title: "okok", url: entry.posters.first?.vid ?? "")
         }
     }
 }

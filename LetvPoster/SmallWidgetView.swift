@@ -12,6 +12,7 @@ struct SmallWidgetView: View {
     
     let image: UIImage
     let title: String
+    let url: String
     
     var body: some View {
         VStack(alignment: .center) {
@@ -34,6 +35,7 @@ struct SmallWidgetView: View {
                     .font(.system(size: 12))
                     .padding(EdgeInsets(top: 0, leading: 10, bottom: 6, trailing: 10))
             }
+            .widgetURL(URL(string: "smallCard,\(url)"))
         }
         .padding(12)
         .background(Color.white)
@@ -45,12 +47,14 @@ struct SmallWidgetView_Previews: PreviewProvider {
         Group {
             SmallWidgetView(
                 image: UIImage(named: "test")!,
-                title: "okok")
+                title: "okok",
+            url: "https://baidu.com")
             .previewContext(WidgetPreviewContext(family: .systemSmall))
             
             SmallWidgetView(
                 image: UIImage(named: "snapback")!,
-                title: "okok")
+                title: "okok",
+                url: "https://baidu.com")
             .previewContext(WidgetPreviewContext(family: .systemSmall))
         }
         

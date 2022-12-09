@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import WidgetKit
 
 class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
@@ -46,7 +47,47 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         // Use this method to save data, release shared resources, and store enough scene-specific state information
         // to restore the scene back to its current state.
     }
+    
+    func scene(_ scene: UIScene, openURLContexts URLContexts: Set<UIOpenURLContext>) {
+        for context in URLContexts {
+            let urlString = context.url.absoluteString
+            if urlString == "Search" {
+                // 搜索
+                print("search")
+                self.alert(title: "Search Click", message: "search")
+            } else if urlString.hasPrefix("smallCard") {
+                print("small card open vid")
+                let component = urlString.components(separatedBy: ",")
+                if component.count > 1 {
+                    let vid = component[1]
+                    self.alert(title: "small card click", message: "vid: \(vid)")
+                }
+            } else if urlString.hasPrefix("episode") {
+                print("medium card open vid")
+                let component = urlString.components(separatedBy: ",")
+                if component.count > 2 {
+                    let vid = component[1]
+                    let order = component[2]
+                    self.alert(title: "medium card click", message: "vid: \(vid), order: \(order)")
+                }
+            }
+        }
+    }
+    
+    func scene(_ scene: UIScene, continue userActivity: NSUserActivity) {
+        if let kind =  userActivity.userInfo?[WidgetCenter.UserInfoKey.kind] as? String, kind == "LetvPoster" {
+            self.alert(title: "widget点击", message: kind)
+        }
+    }
 
+    func alert(title: String, message: String) {
+        let alert = UIAlertController(title: title,
+                                      message: message, preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "ok", style: .cancel, handler: { _ in
+            print("ok")
+        }))
+        self.window?.rootViewController?.present(alert, animated: true)
+    }
 
 }
 
