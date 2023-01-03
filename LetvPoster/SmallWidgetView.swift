@@ -10,9 +10,7 @@ import WidgetKit
 
 struct SmallWidgetView: View {
     
-    let image: UIImage
-    let title: String
-    let url: String
+    let poster: Poster
     
     var body: some View {
         VStack(alignment: .center) {
@@ -22,20 +20,20 @@ struct SmallWidgetView: View {
             }
             Spacer()
             ZStack(alignment: Alignment.bottom) {
-                Image(uiImage: image)
+                Image(uiImage: poster.pic43 ?? UIImage(named: "snapback")!)
                     .resizable()
                     .cornerRadius(4)
                     .scaledToFit()
                 Image("bigmask")
                     .resizable()
                     .frame(height: 30)
-                Text(title)
+                Text(poster.title)
                     .lineLimit(1)
                     .foregroundColor(.white)
                     .font(.system(size: 12))
                     .padding(EdgeInsets(top: 0, leading: 10, bottom: 6, trailing: 10))
             }
-            .widgetURL(URL(string: "smallCard,\(url)"))
+            .widgetURL(URL(string: "smallCard,\(poster.vid)"))
         }
         .padding(12)
         .background(Color.white)
@@ -45,16 +43,10 @@ struct SmallWidgetView: View {
 struct SmallWidgetView_Previews: PreviewProvider {
     static var previews: some View {
         Group {
-            SmallWidgetView(
-                image: UIImage(named: "test")!,
-                title: "okok",
-            url: "https://baidu.com")
+            SmallWidgetView(poster: Poster.placeholderPoster())
             .previewContext(WidgetPreviewContext(family: .systemSmall))
             
-            SmallWidgetView(
-                image: UIImage(named: "snapback")!,
-                title: "okok",
-                url: "https://baidu.com")
+            SmallWidgetView(poster: Poster.placeholderPoster())
             .previewContext(WidgetPreviewContext(family: .systemSmall))
         }
         
