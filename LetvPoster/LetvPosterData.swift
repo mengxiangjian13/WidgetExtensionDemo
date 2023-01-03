@@ -21,40 +21,25 @@ struct LetvPosterData {
                 completion(.failure(error!))
                 return
             }
-            let poster=posterFromJson(fromData: data!)
-            completion(.success(poster))
+            let postModel = try? JSONDecoder().decode(PosterListModel.self, from: data!)
+            if let postModel = postModel {
+                let poster = posterFromDataModel(dataModel: postModel)
+                completion(.success(poster))
+            } else {
+                completion(.success([]))
+            }
         }
         
         task.resume()
     }
     
-    static func posterFromJson(fromData data:Data) -> [Poster] {
-        var PosterArr:[Poster]!
-        PosterArr = Array()
-        let json = try! JSONSerialization.jsonObject(with: data, options: []) as! [String: Any]
-        let result = json["body"] as! [String: Any]
-        let wegitCardList = result["wegitCardList"] as! [String: Any]
-        let list = wegitCardList["list"] as! Array<[String: Any]>
-        for elc in list {
-            let title = elc["title"] as! String
-            let vid = elc["vid"] as! String
-            let at = elc["at"] as! String
-            let pic34 = elc["pic34"] as! String
-            let pic43 = elc["pic43"] as! String
-            //图片同步请求
-            var image: UIImage? = nil
-            if let imageData = try? Data(contentsOf: URL(string: pic34)!) {
-                image = UIImage(data: imageData)
+    static func posterFromDataModel(dataModel: PosterListModel) -> [Poster] {
+        var posters = [Poster]()
+        if let posterList = dataModel.list {
+            for p in posterList {
+                posters.append(Poster.posterWithDataModel(p))
             }
-            var images: UIImage? = nil
-            if let imageData1 = try? Data(contentsOf: URL(string: pic43)!) {
-                images = UIImage(data: imageData1)
-            }
-    
-            PosterArr.append(Poster(title: title, vid: vid, at: at, pic34: image ?? UIImage(named: "snapback"),pic43: images ?? UIImage(named: "snapback")))
         }
-        
-  
-        return PosterArr
+        return posters
     }
 }
