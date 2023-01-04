@@ -16,9 +16,9 @@ struct PosterModel: Decodable {
     var pic43: String?
     
     static func placeholderPoster() -> PosterModel {
-        PosterModel(title: "ok", vid: "", at: "1",
-               pic34: "",
-               pic43: "")
+        PosterModel(title: "", vid: "", at: "1",
+               pic34: nil,
+               pic43: nil)
     }
 }
 

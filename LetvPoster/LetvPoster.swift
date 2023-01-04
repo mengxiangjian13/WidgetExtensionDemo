@@ -10,7 +10,22 @@ import SwiftUI
 
 struct Provider: TimelineProvider {
     
-    var posters = [Poster]()
+    /// 获取数据
+    /// - Parameter completion: 回调block
+    private func getData(completion: @escaping ([Poster]) -> ()) {
+        LetvPosterData.getTodayPoster {
+            switch $0 {
+            case .success(let posters):
+                completion(posters)
+            case .failure(_):
+                var _posters = [Poster]()
+                for _ in 0 ..< 4 {
+                    _posters.append(Poster.placeholderPoster())
+                }
+                completion(_posters)
+            }
+        }
+    }
     
     func placeholder(in context: Context) -> SimpleEntry {
         // 第一次加载placeholder
@@ -22,37 +37,20 @@ struct Provider: TimelineProvider {
     }
 
     func getSnapshot(in context: Context, completion: @escaping (SimpleEntry) -> ()) {
-        // 判断是否是选择添加widget时候的预览，如果是预览，则不需要真实数据，要及时给出预览版。
-        let entry: SimpleEntry
-        if posters.count > 0 && !context.isPreview {
-            entry = SimpleEntry(date: Date(), posters: posters)
-        } else {
-            var _posters = [Poster]()
-            for _ in 0 ..< 4 {
-                _posters.append(Poster.placeholderPoster())
-            }
-            entry = SimpleEntry(date: Date(), posters: _posters)
+        getData {
+            let entry: SimpleEntry
+            entry = SimpleEntry(date: Date(), posters: $0)
+            completion(entry)
         }
-        completion(entry)
     }
 
     func getTimeline(in context: Context, completion: @escaping (Timeline<Entry>) -> ()) {
         
-        LetvPosterData.getTodayPoster {
-            
+        getData {
             let currentDate = Date()
             let entry: SimpleEntry
-            switch $0 {
-            case .success(let posters):
-                entry = SimpleEntry(date: currentDate,
-                                    posters: posters)
-            case .failure(_):
-                var _posters = [Poster]()
-                for _ in 0 ..< 4 {
-                    _posters.append(Poster.placeholderPoster())
-                }
-                entry = SimpleEntry(date: Date(), posters: _posters)
-            }
+            entry = SimpleEntry(date: currentDate,
+                                posters: $0)
             
             let after = Calendar.current.date(byAdding: .hour,
                                               value: 1,
